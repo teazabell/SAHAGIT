@@ -1,0 +1,13 @@
+[
+    {
+        "id": "1",
+        "bookId": "1",
+        "quantity": "1",
+        "dateofSale": {
+            "day": "23",
+            "month": "Jun",
+            "year": "2018"
+        },
+        "price": "250"
+    }
+]
