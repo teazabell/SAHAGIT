@@ -45,12 +45,15 @@
 
     <body>
         <div class="ajax-container">
-            <!-- <input type="button" id="btnAjaxCall" value="Ajax Call" /> -->
-            <form name="cookieform" id="login" method="post">
-                Username : <input type="text" id="txtUsername" />
-                Password : <input type="text" id="txtPassword" />
-                <input id="btnSubmit" type="button" value="Submit"/>
-            </form>
+<!--            //<button onclick="basicAuthen()">Click me</button>-->
+            <input type="button" id="btnSubmit" value="Submit" /> 
+
+            <!--             <input type="button" id="btnAjaxCall" value="Ajax Call" /> -->
+            <!--            <form name="cookieform" id="login" method="post">
+                                            Username : <input type="text" id="txtUsername"  />
+                                            Password : <input type="text" id="txtPassword" />
+                            <input id="btnSubmit" type="button" value="Submit" />
+                        </form>-->
 
             <div class="display-data"> </div>
         </div>
@@ -65,45 +68,59 @@
             var hash = window.btoa(str);
             return "Basic " + hash;
         }
-
-        $("#btnSubmit").click(function () {
+        
+         $("#btnSubmit").click(function () {
+            basicAuthen();
+        });
+           
+        function basicAuthen() {
             var username = $("#txtUsername").val();
             var password = $("#txtPassword").val();
-
             var hash = make_base_auth(username, password);
-
             $.ajax({
-                url: "https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0",
+                url: "https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1",
                 headers: {
                     method: 'GET',
-                    dataType: 'json',
-                    crossDomain: true,
-                    async: false,
-                    //dataType: "json",
+                    dataType: 'jsonp',
+                    //crossDomain: true,
+                    
                     contentType: "application/json; charset=utf-8",
                     Accept: 'application/json',
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH",
+                    "Access-Control-Allow-Origin": "http://localhost:8383",
+//                    "Access-Control-Allow-Credentials": "true",
+                    "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH,OPTIONS",
                     "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,X-API-Key",
-                    "Authorization": "Basic " + btoa(username + ":" + password)
+                    "Authorization": "Basic YWRtaW46MTExMQ=="
+
+                            //+ btoa(username + ":" + password)
 
                 },
+//                xhrFields: {
+//                    withCredentials: true
+//                },
+//                username: 'admin',
+//                password: '1111',
 //                username: username,
 //                password: password,
 //                beforeSend: function (xhr) {
 //                    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
 //                },
+                statusCode: {
+                    401: function () {
+                        alert("Unauthorized");
+                    },
+                    404: function () {
+                        alert("page not found");
+                    }
+                },
                 success: function (data) {
                     alert('Success');
                 },
-                error: function (error) {
-                    alert('Failed!');
-                    console.log(username);
-                    //alert(error.statusCode);
+                error: function (err) {
+                    alert("ถ้าไม่ Error จะก้มกราบ");
                 }
             });
-        });
-
+        }
     </script>
     <script>
         $("#btnAjaxCall").click(function () {
@@ -121,7 +138,7 @@
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH",
                     "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,X-API-Key",
-                    Authorization: 'X-API-Key b55e1b05-ae1a-4165-b866-5a543dc93131 , "Basic " + btoa(USERNAME + ":" + PASSWORD)'
+                    "Authorization": 'X-API-Key b55e1b05-ae1a-4165-b866-5a543dc93131'
                 },
                 success: function (data) {
                     //                        alert('success');

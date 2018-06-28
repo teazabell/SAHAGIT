@@ -1,0 +1,119 @@
+<html>
+
+    <head>
+        <title>Hello Pokemon</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <!--        <script src="api-registry.json" ></script>-->
+
+    <scripts src="npm Libraries/whatwg-fetch"></scripts>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .ajax-container {
+            width: 50%;
+            margin: 50px auto;
+        }
+
+        #btnAjaxCall {
+            height: 50px;
+            width: 120px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            background: #3498db;
+            outline: none;
+            font-size: 22px;
+            opacity: 0.7;
+            padding: 10px;
+        }
+
+        #btnAjaxCall:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .item-details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ajax-container">
+
+        <input type="button" id="btnSubmit" value="Submit" /> 
+
+        <div class="display-data"> </div>
+    </div>
+</body>
+<script>
+    $('#btnSubmit').click(function () {
+        fetchAPI(myInit);
+    });
+
+    var username = "admin";
+    var password = "1111";
+
+    var myInit = {
+        method: 'GET',
+        headers: myHeaders,
+        mode: 'cors',
+        cache: 'default'
+    };
+
+
+
+    var myHeaders = new Headers({
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-Custom-Header": "ProcessThisImmediately",
+        "Authorization": 'Basic ' + btoa(username + ":" + password)
+    });
+    //myHeaders.append("Content-Length", content.length.toString());
+    //myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+
+    var uri = 'https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1';
+    var myRequest = new Request(uri, myInit);
+
+    function fetchAPI() {
+        return fetch(uri, {
+//                body: JSON.stringify(data), // must match 'Content-Type' header
+            //cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, same-origin, *omit
+//            headers: myHeaders,
+            //method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            //mode: 'cors', // no-cors, cors, *same-origin
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer' // *client, no-referrer
+        })
+                .then(
+                        response => response.json()
+//                        response => {
+//                            response.json()
+//                            switch (response.status) {
+//                                case 500:
+//                                    console.error('Some server error');
+//                                    break;
+//                                case 401:
+//                                    console.error('Unauthorized');
+//                                    break;
+//                            }
+//                        }
+                )
+                .catch(
+                        error => console.error('Error:', error)
+                )
+                .then(
+                        response => console.log('Success:', response)
+                );
+    }
+</script>
+
+</html>

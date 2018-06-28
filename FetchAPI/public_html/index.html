@@ -1,0 +1,147 @@
+<html>
+
+    <head>
+        <title>Hello Pokemon</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <!--        <script src="api-registry.json" ></script>-->
+
+    <scripts src="npm Libraries/whatwg-fetch"></scripts>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .ajax-container {
+            width: 50%;
+            margin: 50px auto;
+        }
+
+        #btnSubmit {
+            height: 50px;
+            width: 120px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            background: #3498db;
+            outline: none;
+            font-size: 22px;
+            opacity: 0.7;
+            padding: 10px;
+        }
+
+        #btnAjaxCall:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        #btnSubmit:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+
+        .item-details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ajax-container">
+
+        <input type="button" id="btnSubmit" value="Submit" /> 
+
+        <div class="display-data"> </div>
+    </div>
+
+    <script>
+        $('#btnSubmit').click(function () {
+            fetchAPI();
+        });
+
+        var username = "admin";
+        var password = "1111";
+
+        var myInit = {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            headers: myHeaders,
+            mode: 'cors', //no-cors, cors, *same-origin
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, same-origin, *omit
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer' // *client, no-referrer
+                    //body: JSON.stringify(data), // must match 'Content-Type' header
+        };
+
+
+
+        var myHeaders = new Headers({
+            "Access-Control-Allow-Origin": "*", //เป็น Header กำหนดว่าให้ใครเข้าถึง Resource ของ Server ได้บ้าง
+            "Access-Control-Allow-Methods": "POST, PUT, GET, OPTIONS",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            //"Content-Length": content.length.toString(),
+            //Access-Control-Allow-Credentials: true ทำให้สามารถส่ง cookie หากันได้
+            "X-Custom-Header": "ProcessThisImmediately",
+            "Authorization": 'Basic ' + btoa(username + ":" + password)
+        });
+        //myHeaders.append("Content-Length", content.length.toString());
+        //myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+
+        //var url = 'https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1';
+        var url = "https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1?apikey=3886979f-830b-4752-b157-9c922627abd3";
+
+        var myRequest = new Request(url, myInit);
+
+        function fetchAPI() {
+            return fetch(url, myInit)
+                    .then(
+                            //response => response.json()
+                            response => {
+                               //console.log(response.status);
+                                if (!response.ok) {
+                                    throw Error(response.status);
+                                }
+                                return response.json();
+//                            switch (response.status) {
+//                                case 200:
+//                                    return response.json();
+//                                case 500:
+//                                    throw Error(response.statusText);
+//                                    console.error('Some server error');
+//                                    break;
+//                                case 401:
+//                                    throw Error(response.statusText);
+//                                    console.error('Unauthorized');
+//                                    break;
+//                            }
+                            }
+                    )
+                    .then(
+                            response => console.log('Success:', response)
+                    )
+                    .catch(
+                            //error => console.error('Error:', error)
+
+                            error => {
+                                switch (error) {
+                                    case 500:
+                                        console.error('Some server error - ', error);
+                                        break;
+                                    case 401:
+                                        console.error('Unauthorized - ', error);
+                                        break;
+                                    default:
+                                        console.error("Error "+error);
+                                }
+                            }
+                    );
+        }
+    </script>
+</body>
+
+</html>

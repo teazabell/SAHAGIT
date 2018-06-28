@@ -1,8 +1,16 @@
 {
     "name": "Products",
     "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
     "author": "Teazabell",
     "contributors": [],
-    "dependencies": {}
+    "dependencies": {
+        "whatwg-fetch": "^2.0.4"
+    }
 }
