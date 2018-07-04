@@ -53,18 +53,26 @@
 <body>
     <div class="ajax-container">
 
-        <input type="button" id="btnSubmit" value="Submit" /> 
+        <!--        <input type="button" id="btnSubmit" value="Submit" /> -->
+
+
+
+        <form name="cookieform" id="login" method="post">
+            Username : <input type="text" id="txtUsername"  />
+            Password : <input type="text" id="txtPassword" />
+            <input id="btnLogin" type="button" value="Submit" />
+        </form>
 
         <div class="display-data"> </div>
     </div>
 
     <script>
-        $('#btnSubmit').click(function () {
+        $('#btnLogin').click(function () {
             fetchAPI();
         });
 
-        var username = "admin";
-        var password = "1111";
+        var username = "#txtUsername";
+        var password = "#txtPassword";
 
         var myInit = {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -75,12 +83,13 @@
             redirect: 'follow', // manual, *follow, error
             referrer: 'no-referrer' // *client, no-referrer
                     //body: JSON.stringify(data), // must match 'Content-Type' header
+                    //withCredentials : true
         };
 
 
 
         var myHeaders = new Headers({
-            "Access-Control-Allow-Origin": "*", //เป็น Header กำหนดว่าให้ใครเข้าถึง Resource ของ Server ได้บ้าง
+            "Access-Control-Allow-Origin": "http://localhost:8383", //เป็น Header กำหนดว่าให้ใครเข้าถึง Resource ของ Server ได้บ้าง
             "Access-Control-Allow-Methods": "POST, PUT, GET, OPTIONS",
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -102,23 +111,31 @@
                     .then(
                             //response => response.json()
                             response => {
-                               //console.log(response.status);
+                                //console.log(response);
                                 if (!response.ok) {
-                                    throw Error(response.status);
+                                    switch (response.status) {
+                                        case 500:
+                                            throw Error(response.statusText);
+                                            break;
+                                        case 401:
+                                            throw Error(response.statusText);
+                                            break;
+                                    }
+//                                    throw Error(response.status);
                                 }
                                 return response.json();
-//                            switch (response.status) {
-//                                case 200:
-//                                    return response.json();
-//                                case 500:
-//                                    throw Error(response.statusText);
-//                                    console.error('Some server error');
-//                                    break;
-//                                case 401:
-//                                    throw Error(response.statusText);
-//                                    console.error('Unauthorized');
-//                                    break;
-//                            }
+//                                switch (response.status) {
+//                                    case 200:
+//                                        return response.json();
+//                                    case 500:
+//                                        throw Error(response.statusText);
+//                                        console.error('Some server error');
+//                                        break;
+//                                    case 401:
+//                                        throw Error(response.statusText);
+//                                        console.error('Unauthorized');
+//                                        break;
+//                                }
                             }
                     )
                     .then(
@@ -128,16 +145,17 @@
                             //error => console.error('Error:', error)
 
                             error => {
-                                switch (error) {
-                                    case 500:
-                                        console.error('Some server error - ', error);
-                                        break;
-                                    case 401:
-                                        console.error('Unauthorized - ', error);
-                                        break;
-                                    default:
-                                        console.error("Error "+error);
-                                }
+                                console.error(error);
+//                                switch (error.status) {
+//                                    case 500:
+//                                        console.error('Some server error - ', error);
+//                                        break;
+//                                    case 401:
+//                                        console.error('Unauthorized - ', error);
+//                                        break;
+//                                    default:
+//                                        console.error(error);
+//                                }
                             }
                     );
         }
