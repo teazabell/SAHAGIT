@@ -1,0 +1,63 @@
+<html>
+<header>
+    <title>Basic Authentication</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var username = "admin";
+        var password = "1111";
+
+        $(document).ready(function () {
+            $("#btnAjaxCall").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('api-key', '3886979f-830b-4752-b157-9c922627abd3');
+                        xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ":" + password))
+                    },
+                    headers: {
+                        dataType: 'jsonp',
+                        crossDomain: true,
+                        contentType: "application/json; charset=utf-8",
+                        Accept: 'application/json',
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH",
+                        "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,api-key"
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        // $(".display-data").html(
+
+                        // );
+                        //console.log(JSON.stringify(result));
+                        console.log(data);
+                        // console.log(textStatus);
+                        // console.log(jqXHR);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //handle the error 
+                    }
+                });
+            });
+        });
+    </script>
+
+</header>
+
+<body>
+    <div class="ajax-container">
+
+        <!-- THB :
+        <input type="text" id="txtFrom" />
+        <br> USD :
+        <input type="text" id="txtTo" />
+        <br>
+        <br> -->
+        <input type="button" id="btnAjaxCall" value="Ajax Call" />
+
+        <div class="display-data"> </div>
+    </div>
+</body>
+
+</html>

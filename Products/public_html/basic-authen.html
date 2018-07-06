@@ -4,8 +4,10 @@
         <title>Hello Pokemon</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<!--        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>-->
         <!--        <script src="api-registry.json" ></script>-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="jquery.ajax-cross-origin.min.js"></script>
 
         <style>
             body {
@@ -45,7 +47,9 @@
 
     <body>
         <div class="ajax-container">
-<!--            //<button onclick="basicAuthen()">Click me</button>-->
+            <!--            //<button onclick="basicAuthen()">Click me</button>-->
+            <!--            Username : <input type="text" id="txtUsername"  />
+                        Password : <input type="text" id="txtPassword" />-->
             <input type="button" id="btnSubmit" value="Submit" /> 
 
             <!--             <input type="button" id="btnAjaxCall" value="Ajax Call" /> -->
@@ -59,8 +63,11 @@
         </div>
     </body>
     <script>
-        // var username = $("input#username").val();
-        // var password = $("input#password").val();
+//        var username = $("#txtUsername").val();
+//        var password = $("#txtPassword").val();
+
+        var username = "admin";
+        var password = "1111";
 
         function make_base_auth(user, password) {
             var str = user + ':' + password;
@@ -68,29 +75,37 @@
             var hash = window.btoa(str);
             return "Basic " + hash;
         }
-        
-         $("#btnSubmit").click(function () {
+
+        $("#btnSubmit").click(function () {
             basicAuthen();
         });
-           
+
         function basicAuthen() {
-            var username = $("#txtUsername").val();
-            var password = $("#txtPassword").val();
+//            var username = $("#txtUsername").val();
+//            var password = $("#txtPassword").val();
             var hash = make_base_auth(username, password);
             $.ajax({
+                crossOrigin: true,
                 url: "https://localhost:8443/apiman-gateway/Monster/TestPolicy/1.0.1",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('api-key', '3886979f-830b-4752-b157-9c922627abd3');
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ":" + password));
+                },
+//                xhrFields: {
+//                    withCredentials: true
+//                },
                 headers: {
                     method: 'GET',
-                    dataType: 'jsonp',
-                    //crossDomain: true,
-                    
+                    dataType: 'json',
+//                    crossDomain: true,
+                    credentials: 'include',
                     contentType: "application/json; charset=utf-8",
                     Accept: 'application/json',
-                    "Access-Control-Allow-Origin": "http://localhost:8383",
+                    "Access-Control-Allow-Origin": "*",
 //                    "Access-Control-Allow-Credentials": "true",
                     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH,OPTIONS",
-                    "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,X-API-Key",
-                    "Authorization": "Basic YWRtaW46MTExMQ=="
+                    "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,X-API-Key"
+                            //"Authorization": 'Basic ' + btoa(username + ":" + password)
 
                             //+ btoa(username + ":" + password)
 
@@ -105,15 +120,16 @@
 //                beforeSend: function (xhr) {
 //                    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
 //                },
-                statusCode: {
-                    401: function () {
-                        alert("Unauthorized");
-                    },
-                    404: function () {
-                        alert("page not found");
-                    }
-                },
+//                statusCode: {
+//                    401: function () {
+//                        alert("Unauthorized");
+//                    },
+//                    404: function () {
+//                        alert("page not found");
+//                    }
+//                },
                 success: function (data) {
+                    console.log(data);
                     alert('Success');
                 },
                 error: function (err) {

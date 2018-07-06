@@ -52,27 +52,31 @@
         });
         function fetchDataAndDisplay() {
             $.ajax({
-                url: "https://localhost:8443/apiman-gateway/Monster/users/1.0?apikey=b55e1b05-ae1a-4165-b866-5a543dc93131",
+                url: "https://localhost:8443/apiman-gateway/Monster/Products/1.0.1",
                 headers: {
                     method: 'GET',
                     dataType: 'jsonp',
+                    crossDomain: true,
                     //dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     Accept: 'application/json',
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH",
                     "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,Authorization,X-API-Key",
-                    Authorization: 'X-API-Key b55e1b05-ae1a-4165-b866-5a543dc93131'
+                    Authorization: 'X-API-Key 3886979f-830b-4752-b157-9c922627abd3'
                 },
                 success: function (data) {
-                    $(".display-data").empty();
-                    for (i = 0; i < data.length; i++) {
-                        $(".display-data").append('Id: ' + data[i].id + '<br/>' +
-                                'Name: ' + data[i].name + '<br/>' +
-                                'Username: ' + data[i].username + '<br/>' +
-                                'Position: ' + data[i].position + '<br/>'
-                                );
-                    }
+                    
+                    console.log(data);
+//                    $(".display-data").empty();
+//                    for (i = 0; i < data.length; i++) {
+//                        $(".display-data").append('Id: ' + data[i].id + '<br/>' +
+//                                'Name: ' + data[i].name + '<br/>' +
+//                                'Username: ' + data[i].username + '<br/>' +
+//                                'Position: ' + data[i].position + '<br/>'
+//                                );
+//                    }
+
 
 //                    $.each(data, function (i) {
 //                        $(".display-data").append('Id: ' + data[i].id + '<br/>' +
