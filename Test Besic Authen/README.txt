@@ -5,4 +5,4 @@
 
 3.เปลี่ยน url เป็นของตัวเอง + แก้ apikey ด้วย set username+password เป็น admin 1111
 
-4.รันบน firefox 
+4.รันบน firefox ชื่อไฟล์ TestBasicAuthen
