@@ -1,0 +1,207 @@
+<html>
+
+<head>
+    <title>Deposit</title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="Unidentifier">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .ajax-container {
+            width: 50%;
+            margin: 50px auto;
+        }
+
+        #btnAjaxCall {
+            height: 50px;
+            width: 120px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            background: #3498db;
+            outline: none;
+            font-size: 22px;
+            opacity: 0.7;
+            padding: 10px;
+        }
+
+        #btnAjaxCall:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .item-details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+
+        #nav {
+            color: black;
+            /* สีฟ้อน */
+            /* text-align: center; ตำแหน่งที่แสดงผล */
+            background-color: #6666ff;
+            width: 30px;
+            /*height: 40px;*/
+            text-align: center;
+            display: inline-block;
+            padding: 5px;
+            border: 1px solid #dadada;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            border-radius: 7px;
+            cursor: default;
+        }
+
+        .pagination {
+            /* background-color: #dadada; */
+            padding: px;
+            -moz-border-radius: 7px;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ajax-container">
+        <input type="button" id="btnFindFI" value="ค้นหา" />
+        <div id="content">
+            <!-- <div class="element"></div> -->
+        </div>
+        <div class="pagination"></div>
+    </div>
+
+    <script>
+        var count = 0;
+
+        $('#btnFindFI').click(function () {
+            ajaxAPI();
+        });
+        function isEmpty(data , unit) {
+            if (data.trim() == '') {
+                return "-";
+            }
+            else return data+" "+unit+" ";
+        }
+
+        function ajaxAPI() {
+            $(document).ready(function () {
+                var criteria = {
+                    "AccountTypeList": "",
+                    "FICodeList": "004",
+                    "BalanceAmount": "",
+                    "ProductName": "",
+                    "DepositTermRange": "",
+                    "DepositTermType": "",
+                    "InterestWithoutTax": "",
+                    "AccntWithInsrnc": "",
+                    "ProductRelate": ""
+                };
+
+                var resultError = true;
+
+                $.ajax({
+                    method: "POST",
+                    url: "https://iapi.bot.or.th/Stat/ProductDisclosure/Deposit",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('api-key', 'U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm');
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    Accept: 'application/json',
+                    data: JSON.stringify(criteria),
+                    success: function (response) {
+                        console.log(response);
+
+                        var str = '';
+
+                        for (var i = 0; i < response.length; i++) {
+                            str += '<div class="element">' +
+                                'สถาบันการเงิน : ' + response[i].FIName + '<br/>' +
+                                'ผลิตภัณฑ์ : ' + response[i].ProductName + '<br/>' +
+                                //'อัตราดอกเบี้ยต่อปี' + response["0"].FIName + '<br/>' +
+                                'ระยะเวลาฝากที่กำหนด : ' + isEmpty(response[i].MinimumDepositTerm,"เดือน") +
+                                response[i].DepositTermFlag + '<br/>' +
+                                'จำนวนเงินเปิดบัญชีขั้นต่ำ : ' + response[i].MinimumBalance + ' บาท' + '<br/>' +
+                                'ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี : ' + response[i].BundleProductFlag + '<br/>' +
+                                '</div>';
+                        }
+                        //$("#content").empty(); //ลบ display-data ก่อนหน้า ลบข้อความที่ต้องการ
+                        $("#content").append(str);
+                        display();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+
+    <script>
+        function display() {
+            var perpage = 3;  // จำนวนรายการต่อหนึ่งหน้า         
+            var allNum = $("div#content div.element").length;  // นับจำนวน ข้อมูลทั้งหมดว่ามีกี่ชุด        
+            var i = 1;
+            var paginator = "<span id='nav'" + i + " >" + i + "</span>";   // สร้าง navigator
+            for (i = 2; i < Math.round(parseInt(allNum) / parseInt(perpage)); i++) {
+                paginator += "<span id='nav' >" + i + "</span>";
+            }
+            paginator += "<span id='nav'" + i + " >" + i + "</span>";
+
+            $("div.pagination").each(function () {  // สร้าง navigator ที่ด้านบนและด้านล่างของหน้าจอ
+                $(this).html(paginator);
+            });
+
+            // ทำการแทรก div เพื่อกำกับเลขหน้า  นับตามจำนวนรายการต่อหนึ่งหน้า
+            var count = 0,
+                pagecount = 1,
+                regenerator = "<div class='page" + pagecount + "' for='all'>";
+            $("div#content div.element").each(function () {
+                count++;
+                regenerator += "<div class='item-details'>" + $(this).html() + "</div>";
+                if (!(count % perpage)) {
+                    pagecount++;
+                    regenerator += "</div><div class='page" + pagecount + "' for='all'>";
+                }
+            }); //แสดงเนื้อหาข้างใน
+            regenerator += "</div>";
+            $("div#content").empty().html(regenerator);
+            $("div[for=all]").hide();   //ซ่อนข้อมูลทั้งหมดก่อน
+            $("div.page1").show(400);   //แสดงเฉพาะหน้าที่ 1   
+            //ดักการกดคีย์บอร์ดที่ navigator-page number ที่้ด้านบนและล่างของจอภาพ
+            $("div.pagination span#nav").click(function () {
+                var index = $(this).text();
+                $("div[for=all]").hide(400);
+                $("div.page" + index).show(400);
+            });
+        };    
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/perpageStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script/callAjax.js"></script>
+    <script src="script/perpage.js"></script>
+    <script src="script/option.js"></script>
+    <script src="script/comma.js"></script>
+    <script src="script/dropdown.js"></script>
+    <script src="db/data.js"></script>
+</head>
+
+<body onload="selectOption()">
+    <div class="ajax-container">
+        <fieldset>
+            <legend>Personal information:</legend>
+            <form name="optionForm" id="optionForm" method="post" style="text-align: center">
+                ชื่อสถาบันการเงิน :
+                <select id="menuFI" name="fiName">
+                    <option value="">------กรุณาเลือกสถาบันการเงิน------</option>
+                </select>
+                ประเภทเงินฝาก :
+                <select id="menuAccount" name="account">
+                    <option value="">-----กรุณาเลือกประเภทเงินฝาก-----</option>
+                </select>
+                <input type="button" value="ค้นหา" onclick="ajaxAPI()" />
+            </form>
+        </fieldset>
+        <div class="test"></div>
+        <div id="content">
+            <!-- <div class="element"></div> -->
+        </div>
+        <div class="pagination"></div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <title>BOT API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+           <script src="api-registry.json" ></script> -->
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .ajax-container {
+            width: 50%;
+            margin: 50px auto;
+        }
+
+        #btnAjaxCall {
+            height: 50px;
+            width: 120px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            background: #3498db;
+            outline: none;
+            font-size: 22px;
+            opacity: 0.7;
+            padding: 10px;
+        }
+
+        #btnAjaxCall:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .item-details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ajax-container">
+
+        <form name="fiForm" id="findFi" method="post">
+            ชื่อสถาบันการเงิน :
+            <input type="text" id="txtFIName" />
+            <input id="btnFindFI" type="button" value="ค้นหา" />
+        </form>
+
+        div
+        <div class="display-data"> </div>
+    </div>
+
+    <script>
+        var count = 0;
+
+        $('#btnFindFI').click(function () {
+            ajaxAPI();
+        });
+
+        function ajaxAPI() {
+            $(document).ready(function () {
+                var criteria = {
+                    "AccountTypeList": "",
+                    "FICodeList": "004",
+                    "BalanceAmount": "",
+                    "ProductName": "",
+                    "DepositTermRange": "",
+                    "DepositTermType": "",
+                    "InterestWithoutTax": "",
+                    "AccntWithInsrnc": "",
+                    "ProductRelate": ""
+                };
+
+                var resultError = true;
+
+                $.ajax({
+                    method: "POST",
+                    url: "https://iapi.bot.or.th/Stat/ProductDisclosure/Deposit",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('api-key', 'U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm');
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    Accept: 'application/json',
+                    data: JSON.stringify(criteria),
+                    success: function (response) {
+                        console.log(response);
+
+                        var start = count > 0 ? 5 * count : count; //condition ? inCaseOfTrue : elseCase;
+                        var end = start + 5;
+                        var str = '';
+                        for (var i = start; i < end; i++) {
+                            str += '<div class="item-details">' +
+                                'สถาบันการเงิน : ' + response[i].FIName + '<br/>' +
+                                'ผลิตภัณฑ์ : ' + response[i].ProductName + '<br/>' +
+                                //'อัตราดอกเบี้ยต่อปี' + response["0"].FIName + '<br/>' +
+                                'ระยะเวลาฝากที่กำหนด : ' + response[i].MinimumDepositTerm + 'เดือน / ' + response[i].DepositTermFlag + '<br/>' +
+                                'จำนวนเงินเปิดบัญชีขั้นต่ำ : ' + response[i].MinimumBalance + ' บาท' + '<br/>' +
+                                'ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี : ' + response[i].BundleProductFlag + '<br/>' +
+                                '</div>';
+                        }
+                        if (start === response.length) {
+                            count = 0;
+                            $(".display-data").empty();
+                            $(".display-data").append("List Traversed. Start over!");
+                            return;
+                        }
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                    }
+                });
+            });
+        }
+
+
+    </script>
+</body>
+</html>
