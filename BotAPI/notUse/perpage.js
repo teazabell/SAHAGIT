@@ -1,13 +1,14 @@
 function display() {
   var perpage = 4; // จำนวนรายการต่อหนึ่งหน้า
   var allNum = $("div#content div.element").length; // นับจำนวน ข้อมูลทั้งหมดว่ามีกี่ชุด
-  var i = 1;
-  var paginator = "<span id='nav' class='active'" + i + " >" + i + "</span>"; // สร้าง navigator
-  for (i = 2; i < Math.round(parseInt(allNum) / parseInt(perpage)); i++) {
-    paginator += "<span id='nav' class='menu' >" + i + "</span>";
+  var paginator = "<span id='nav' class='menu' > &laquo; </span>"; // สร้าง navigator
+  for (i = 1; i < Math.round(parseInt(allNum) / parseInt(perpage)); i++) {
+    if(i==1){
+      paginator += "<span id='nav' class='active' >" + i + "</span>";
+    }
+    else paginator += "<span id='nav' class='menu' >" + i + "</span>";
   }
-  paginator += "<span id='nav' class='menu'" + i + " >" + i + "</span>";
-
+  paginator += "<span id='nav' class='menu' > &raquo; </span>";
   $("div.pagination").each(function() {
     // สร้าง navigator ที่ด้านบนและด้านล่างของหน้าจอ
     $(this).html(paginator);

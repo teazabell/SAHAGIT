@@ -13,6 +13,7 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #nav :hover:not(.active) {
@@ -20,9 +21,19 @@
 }
 
 .active {
-  cursor: pointer;
   background-color: #4caf50;
 }
+
+#nav:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#nav:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 
 /* .pagination {
     /*background-color: #dadada; 

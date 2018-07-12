@@ -3,7 +3,7 @@ body {
 }
 
 .ajax-container {
-  width: 60%;
+  width: 70%;
   margin: 50px auto;
 }
 
@@ -26,7 +26,37 @@ body {
 }
 
 .item-details {
-  margin-top: 10px;
+  margin-top: 20px;
   border: 1px solid #ddd;
-  padding: 6px;
+  padding: 10px;
+}
+
+.depositInfo label{
+  float: left;
+  width: 230px;
+  margin-left: 10em;
+  margin-right: 6em;
+}
+
+.depositInfo{
+  margin: 10px auto;
+  width: 97%;
+  border: 2px solid #ddd;
+  
+
+  /* -moz-border-radius: 7px;
+  border-radius: 7px; */
+
+  /* top: 50%;
+  left: 50%;
+  transform: translate((-50%,-50%));
+  background: rgba((0), 0,0, 5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba((0), 0,0, 5);
+  border-radius: 10px; */
+
+}
+
+#optionForm{
+  margin: 10px auto;
 }

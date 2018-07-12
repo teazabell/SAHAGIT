@@ -45,9 +45,22 @@ function ajaxAPI() {
     data: JSON.stringify(criteria),
     success: function(response) {
       if (resIsEmpty(response)) {
+        var str = "";
+        for (var i = 0; i < response.length; i++) {
+          str += '<div class="element">' +
+          'สถาบันการเงิน : ' + response[i].FIName + '<br/>' +
+          'ประเภทเงินฝาก : '+ response[i].AccountType + '</br>' +
+          'ผลิตภัณฑ์ : ' + response[i].ProductName + '<br/>' +
+          //'อัตราดอกเบี้ยต่อปี' + response["0"].FIName + '<br/>' +
+          'ระยะเวลาฝากที่กำหนด : ' + isEmpty(response[i].MinimumDepositTerm,"เดือน") +
+          response[i].DepositTermFlag + '<br/>' +
+          'จำนวนเงินเปิดบัญชีขั้นต่ำ : ' + numberWithCommas(parseInt(response[i].MinimumBalance).toFixed(0)) + ' บาท' + '<br/>' +
+          'ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี : ' + response[i].BundleProductFlag + '<br/>' +
+          '</div>';
+        }
         
-        pagination("demo1" , response);
-        
+        $("#content").append(str);
+        display();
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {

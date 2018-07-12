@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/perpageStyle.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/paginationjs/dist/pagination.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script/callAjax.js"></script>
     <script src="script/perpage.js"></script>
@@ -12,32 +14,65 @@
     <script src="script/comma.js"></script>
     <script src="script/dropdown.js"></script>
     <script src="db/data.js"></script>
+    <script src="script/pagination.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="node_modules/paginationjs/src/pagination.js"></script>
+    <script src="script/page.js"></script>
 </head>
 
 <body onload="selectOption()">
     <div class="ajax-container">
-        <fieldset>
-            <legend>Personal information:</legend>
-            <form name="optionForm" id="optionForm" method="post" style="text-align: center">
-                ชื่อสถาบันการเงิน :
-                <select id="menuFI" name="fiName">
-                    <option value="">------กรุณาเลือกสถาบันการเงิน------</option>
+        <div class="container-form">
+        <fieldset class="depositInfo">
+            <!-- <legend>Deposit information:</legend> -->
+            <form name="optionForm" id="optionForm" method="post">
+                <label for="menuFI">ชื่อสถาบันการเงิน :</label>
+                <select id="menuFI" name="fiName" style="width: 285px;text-align: center">
+                    <option value="">กรุณาเลือกสถาบันการเงิน</option>
                 </select>
-                ประเภทเงินฝาก :
-                <select id="menuAccount" name="account">
-                    <option value="">-----กรุณาเลือกประเภทเงินฝาก-----</option>
+
+                <br>
+                <br>
+                <label for="menuAccount">ประเภทเงินฝาก :</label>
+                <select id="menuAccount" name="account" style="width: 285px;text-align: center">
+                    <option value="">กรุณาเลือกประเภทเงินฝาก</option>
                 </select>
+
+                <br>
+                <br>
+                <label for="txtBalanceAmount">จำนวนเงินฝากไม่เกิน (บาท) :</label>
+                <input type="text" name="txtBalanceAmount" id="txtBalanceAmount" placeholder="Enter Email" maxlength="15" style="width:285px;text-align: center" />
+                <br>
+                <br>
+
+                <label for="menuAccntWithInsrnc">บัญชีเงินฝากแบบมีประกัน :</label>
+                <select name="menuAccntWithInsrnc" id="menuAccntWithInsrnc" style="text-align: center;width: 285px">
+                    <option value="">ทั้งหมด</option>
+                    <option value="1"> บัญชีเงินฝากแบบไม่มีประกัน </option>
+                    <option value="2"> บัญชีเงินฝากแบบมีประกัน </option>
+                </select>
+                <br>
+                <br>
+
+                <label for="menuProductRelate">ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี :</label>
+                <select name="menuProductRelate" id="menuProductRelate" style="text-align: center;width: 285px ">
+                    <option value="">ทั้งหมด</option>
+                    <option value="1"> ไม่ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                    <option value="2"> ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                </select>
+                <br>
+                <br>
+
                 <input type="button" value="ค้นหา" onclick="ajaxAPI()" />
+
             </form>
         </fieldset>
-        <div class="test"></div>
-        <div id="content">
-            <!-- <div class="element"></div> -->
-        </div>
-        <div class="pagination"></div>
     </div>
 
-
+    <div class="data-container"></div>
+    <div id="pagination-demo1"></div>
+    
+</div>
 </body>
 
 </html>
