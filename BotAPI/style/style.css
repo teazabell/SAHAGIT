@@ -2,8 +2,13 @@ body {
   font-family: sans-serif;
 }
 
-.ajax-container {
+.container-form {
   width: 70%;
+  margin: 50px auto;
+}
+
+.container-data{
+  width: 90%;
   margin: 50px auto;
 }
 

@@ -17,11 +17,13 @@ function pagination(namePage , sources) {
 
       var options = { //เพิ่มข้อมูล
         dataSource: sources,
+        showGoInput: true,
+        showGoButton: true,
         callback: function (response, pagination) {
           window.console && console.log(response, pagination);
 
-        var dataHtml ="<table id='myTable' class='table table-bordered table-striped'>"+
-        "<thead>"+
+        var dataHtml ="<table id='myTable' class='table table-bordered table-striped'  style='text-align: center'>"+
+        "<thead >"+
           "<tr>"+
             "<th>สถาบันการเงิน</th>"+
             "<th>ประเภทเงินฝาก</th>"+
@@ -38,7 +40,7 @@ function pagination(namePage , sources) {
             "<td>" + item.FIName +"</td>" +
             "<td>" + item.AccountType +"</td>" +
             "<td>" + item.ProductName + "</td>" +
-            "<td>" + isEmpty(item.MinimumDepositTerm) + item.DepositTermFlag + "</td>" +
+            "<td>" + isEmpty(item.MinimumDepositTerm) +"</br>"+ item.DepositTermFlag + "</td>" +
             "<td>" + numberWithCommas(parseInt(item.MinimumBalance).toFixed(0)) +"</td>" +
             "<td>" +item.BundleProductFlag + "</td>" +
             "</tr>";
