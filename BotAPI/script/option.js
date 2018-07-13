@@ -31,6 +31,11 @@ function selectOption() {
 
       var $selectAccount = $("#menuAccount");
       $selectAccount.append(showOptionAccount());
+
+      var button = '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float: right;margin-right: 50px;margin-bottom: 20px">Open Modal</button>';
+
+      $(".button-popup").append(button);
+      pagination("demo1" , response);
     },
     error: function(jqXHR, textStatus, errorThrown) {
       var msg = "";

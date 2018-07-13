@@ -44,6 +44,7 @@ function ajaxAPI() {
     Accept: "application/json",
     data: JSON.stringify(criteria),
     success: function(response) {
+      
       if (resIsEmpty(response)) {
         
         pagination("demo1" , response);
