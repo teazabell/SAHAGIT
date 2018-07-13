@@ -28,6 +28,7 @@ function pagination(namePage , sources) {
             "<th>สถาบันการเงิน</th>"+
             "<th>ประเภทเงินฝาก</th>"+
             "<th>ผลิตภัณฑ์</th>"+
+            "<th>อัตราดอกเบี้ยต่อปี</th>"+
             "<th>ระยะเวลาฝากที่กำหนด</th>"+
             "<th>จำนวนเงินเปิดบัญชีขั้นต่ำ</th>"+
             "<th>ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี</th>"+
@@ -40,8 +41,9 @@ function pagination(namePage , sources) {
             "<td>" + item.FIName +"</td>" +
             "<td>" + item.AccountType +"</td>" +
             "<td>" + item.ProductName + "</td>" +
+            "<td>" + interestRate(item.MinimumInterestRate,item.MaximumInterestRate) + "</td>" +
             "<td>" + isEmpty(item.MinimumDepositTerm)+" เดือน" +"</br>"+ item.DepositTermFlag + "</td>" +
-            "<td>" + numberWithCommas(parseInt(item.MinimumBalance).toFixed(0)) +"</td>" +
+            "<td>" + numberWithCommas(parseInt(item.MinimumBalance)) +"</td>" +
             "<td>" +item.BundleProductFlag + "</td>" +
             "</tr>";
           });
