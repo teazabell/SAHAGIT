@@ -40,7 +40,7 @@ function pagination(namePage , sources) {
             "<td>" + item.FIName +"</td>" +
             "<td>" + item.AccountType +"</td>" +
             "<td>" + item.ProductName + "</td>" +
-            "<td>" + isEmpty(item.MinimumDepositTerm) +"</br>"+ item.DepositTermFlag + "</td>" +
+            "<td>" + isEmpty(item.MinimumDepositTerm)+" เดือน" +"</br>"+ item.DepositTermFlag + "</td>" +
             "<td>" + numberWithCommas(parseInt(item.MinimumBalance).toFixed(0)) +"</td>" +
             "<td>" +item.BundleProductFlag + "</td>" +
             "</tr>";

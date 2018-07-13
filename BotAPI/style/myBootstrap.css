@@ -16,4 +16,6 @@
     display: inline-block;
     text-align: left;
     vertical-align: middle;
+    width:1180px;
+    /* กำหนดความกว้างของ modal */
   }

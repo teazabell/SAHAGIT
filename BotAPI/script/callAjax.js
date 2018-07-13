@@ -11,21 +11,27 @@ function resIsEmpty(data) {
   } else return true;
 }
 
+
 function ajaxAPI() {
   var FICodeList = $("#menuFI").val();
   var AccountTypeList = $("#menuAccount").val();
+  var ProductName = document.getElementById("txtProductName").value;
   var BalanceAmount = document.getElementById("txtBalanceAmount").value;
   var AccntWithInsrnc = $("#menuAccntWithInsrnc").val();
   var ProductRelate = $("#menuProductRelate").val();
+  var DepositTermRange = $("#menuDepositTermRange").val();
+  var DepositTermType = $("#menuDepositTermType").val();
+  var InterestWithoutTax = $("#menuInterestWithoutTax").val();
 
+  console.log(DepositTermRange);
   var criteria = {
     AccountTypeList: AccountTypeList,
     FICodeList: FICodeList,
     BalanceAmount: BalanceAmount,
-    ProductName: "",
-    DepositTermRange: "",
-    DepositTermType: "",
-    InterestWithoutTax: "",
+    ProductName: ProductName,
+    DepositTermRange: DepositTermRange,
+    DepositTermType: DepositTermType,
+    InterestWithoutTax: InterestWithoutTax,
     AccntWithInsrnc: AccntWithInsrnc,
     ProductRelate: ProductRelate
   };
@@ -44,11 +50,10 @@ function ajaxAPI() {
     Accept: "application/json",
     data: JSON.stringify(criteria),
     success: function(response) {
-      
+      $('#myModal').modal( 'hide' ).data( 'bs.modal', null ); //Close bootstrap modal after submit
+
       if (resIsEmpty(response)) {
-        
-        pagination("demo1" , response);
-        
+        pagination("demo1", response);
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {

@@ -7,7 +7,7 @@ body {
   margin: 50px auto;
 }
 
-.container-data{
+.container-data {
   width: 90%;
   margin: 50px auto;
 }
@@ -36,17 +36,17 @@ body {
   padding: 10px;
 }
 
-.depositInfo label{
+.depositInfo label {
   float: left;
-  width: 230px;
-  margin-left: 10em;
-  margin-right: 6em;
+  width: 200px; 
+  /* กำหนดระยะห่างระวัง lable กับ select */
+   margin-left: 20px;
+  /* margin-right: 6em; */
 }
 
-.depositInfo{
+.depositInfo {
   margin: 10px auto;
   /* border: 2px solid #ddd; */
-  
 
   /* -moz-border-radius: 7px;
   border-radius: 7px; */
@@ -58,9 +58,24 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba((0), 0,0, 5);
   border-radius: 10px; */
-
 }
 
-#optionForm{
+#optionForm {
   margin: 10px auto;
+}
+
+hr.style2 {
+	border-top: 3px double #8c8b8b;
+}
+
+hr.style13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+hr.style1{
+  width: 80% ;
+  border-left:1px dashed #000;
+	border-top: 1px solid #8c8b8b;
 }

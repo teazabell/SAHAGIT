@@ -32,7 +32,7 @@ function selectOption() {
       var $selectAccount = $("#menuAccount");
       $selectAccount.append(showOptionAccount());
 
-      var button = '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float: right;margin-right: 50px;margin-bottom: 20px">Open Modal</button>';
+      var button = '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float: right;margin-right: 50px;margin-bottom: 20px">Search</button>';
 
       $(".button-popup").append(button);
       pagination("demo1" , response);
