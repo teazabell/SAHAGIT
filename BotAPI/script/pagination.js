@@ -37,19 +37,29 @@ function pagination(namePage , sources) {
         "<tbody>";
 
           $.each(response, function (index, item) {
+
             dataHtml += "<tr>" +
             "<td>" + item.FIName +"</td>" +
             "<td>" + item.AccountType +"</td>" +
             "<td>" + item.ProductName + "</td>" +
-            "<td>" + interestRate(item.MinimumInterestRate,item.MaximumInterestRate) + "</td>" +
+            "<td>" + "<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+") >"+
+            interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+"</button> </td>"+
             "<td>" + isEmpty(item.MinimumDepositTerm)+" เดือน" +"</br>"+ item.DepositTermFlag + "</td>" +
             "<td>" + numberWithCommas(parseInt(item.MinimumBalance)) +"</td>" +
             "<td>" +item.BundleProductFlag + "</td>" +
             "</tr>";
+            
+            var detail = "<div class='content' id='"+index+"' style='display:block' >"+item.InterestRateCondition+"</div>";
+            $(".modal-body").append(detail);
+
+            var header = "<h4 class='modal-title' id='"+index+"' style='display:block' >อัตราดอกเบี้ย ของผลิตภัณฑ์ "+item.ProductName+"</h4>";
+            $(".modal-header").append(header);
+
+
           });
 
            dataHtml += "</tbody></table>";
-  
+           
           container.prev().html(dataHtml);
         }
       };
@@ -67,3 +77,31 @@ function pagination(namePage , sources) {
       });
     })(namePage);
 }
+
+function showDetail (index , ProductName){
+  $('.content').show();
+  $('.content').not('#' + index).hide();
+
+  $('.modal-title').show();
+  $('.modal-title').not('#' + index).hide();
+
+  
+  // var str = "อัตราดอกเบี้ย ของผลิตภัณฑ์ "+ProductName;
+  // $('.modal-title').html(str);
+}
+
+
+
+
+
+
+
+
+// function showDetail(index){
+//   console.log("Calling");
+//   $("#"+index).css("display", "");
+// }
+// $('#interestModal').on('show.bs.modal', function (e) {
+//   console.log("Calling");
+//   alert('Modal is successfully shown!');
+// });

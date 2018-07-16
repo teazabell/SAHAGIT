@@ -23,7 +23,6 @@ function ajaxAPI() {
   var DepositTermType = $("#menuDepositTermType").val();
   var InterestWithoutTax = $("#menuInterestWithoutTax").val();
 
-  console.log(DepositTermRange);
   var criteria = {
     AccountTypeList: AccountTypeList,
     FICodeList: FICodeList,

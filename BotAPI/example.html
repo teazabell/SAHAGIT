@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class='thumbnail'>A</div>
+    <div class='thumbnail'>B</div>
+    <div class='thumbnail' id='1'>C</div>
+
+    
+    <script type="text/javascript" language="JavaScript">
+        console.log("calling");
+        function showOne(id) {
+            $('.thumbnail').not('#' + id).hide();
+        }
+        showOne(1);
+    </script>
+</body>
+
+
+
+</html>
