@@ -10,7 +10,3 @@ function interestRate(min , max){
     return min+" - "+max;
   } 
 }
-
-function showInterest(){
-  
-}

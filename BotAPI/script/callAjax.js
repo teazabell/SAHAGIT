@@ -52,8 +52,11 @@ function ajaxAPI() {
       $('#myModal').modal( 'hide' ).data( 'bs.modal', null ); //Close bootstrap modal after submit
 
       if (resIsEmpty(response)) {
+        $(".modal-header-title-detail").empty(); 
+        $(".modal-body-detail").empty();
         pagination("demo1", response);
       }
+      
     },
     error: function(jqXHR, textStatus, errorThrown) {
       var msg = "";

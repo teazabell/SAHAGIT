@@ -18,10 +18,19 @@
     <script src="script/pagination.js"></script>
     <script src="bootstrap/bootstrap.min.js"></script>
     <script src="node_modules/paginationjs/src/pagination.js"></script>
+    <script src="script/InterestRateCondition.js"></script>
 </head>
 
 <body onload="selectOption()">
     <div class="ajax-container">
+
+        <!--Header  -->
+        <!-- <div class="container-fluid" style="background-color:#4CAF50;color:#fff;height:200px;">
+            <h1>BOT API</h1>
+            <h3>เปรียบเทียบข้อมูลเงินฝาก</h3>
+            <!-- <p>Scroll this page to see how the navbar behaves with data-spy="affix".</p>
+            <p>The navbar is attached to the top of the page after you have scrolled a specified amount of pixels.</p> -->
+        <!-- </div> -->
 
         <!-- navbar -->
         <nav class="navbar navbar-inverse">
@@ -59,11 +68,12 @@
             </div>
         </nav>
 
+
         <div class="button-popup"></div>
-        <!-- popup -->
+        <!-- Search Modal -->
         <div class="container-form">
             <div class="container-popup">
-                <!-- Trigger the modal with a button -->  
+                <!-- Trigger the modal with a button -->
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -77,67 +87,146 @@
                             <div class="modal-body">
                                 <fieldset class="depositInfo">
                                     <!-- <legend>Deposit information:</legend> -->
-                                    <form name="optionForm" id="optionForm" method="post">
-                                        <label for="menuFI">ชื่อสถาบันการเงิน :</label>
-                                        <select id="menuFI" name="fiName" style="width: 310px;text-align: center">
-                                            <option value="">กรุณาเลือกสถาบันการเงิน</option>
-                                        </select>
 
-                                        <br>
-                                        <br>
-                                        <label for="menuAccount">ประเภทเงินฝาก :</label>
-                                        <select id="menuAccount" name="account" style="width: 310px;text-align: center">
-                                            <option value="">กรุณาเลือกประเภทเงินฝาก</option>
-                                        </select>
+                                    <form name="formOption" id="formOption" method="post">
 
-                                        <br>
-                                        <br>
-                                        <label for="txtBalanceAmount">จำนวนเงินฝากไม่เกิน (บาท) :</label>
-                                        <input type="text" name="txtBalanceAmount" id="txtBalanceAmount" placeholder="ระบุจำนวนเงินฝาก" maxlength="15" style="width:310px;text-align: center"
-                                        />
-                                        <br>
-                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6">
 
-                                        <label for="menuAccntWithInsrnc">บัญชีเงินฝากแบบมีประกัน :</label>
-                                        <select name="menuAccntWithInsrnc" id="menuAccntWithInsrnc" style="text-align: center;width: 310px">
-                                            <option value="">ทั้งหมด</option>
-                                            <option value="1"> บัญชีเงินฝากแบบไม่มีประกัน </option>
-                                            <option value="2"> บัญชีเงินฝากแบบมีประกัน </option>
-                                        </select>
-                                        <br>
-                                        <br>
+                                                <label for="menuFI">ชื่อสถาบันการเงิน :</label>
+                                                <select id="menuFI" name="fiName" style="width: 310px;text-align: center">
+                                                    <option value="" selected="selected">กรุณาเลือกสถาบันการเงิน</option>
+                                                </select>
 
-                                        <label for="menuProductRelate">ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี :</label>
-                                        <select name="menuProductRelate" id="menuProductRelate" style="text-align: center;width: 310px ">
-                                            <option value="">ทั้งหมด</option>
-                                            <option value="1"> ไม่ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
-                                            <option value="2"> ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
-                                        </select>
-                                        <br>
-                                        <br>
+                                                <br>
+                                                <br>
+                                                <label for="menuAccount">ประเภทเงินฝาก :</label>
+                                                <select id="menuAccount" name="account" style="width: 310px;text-align: center">
+                                                    <option value="" selected="selected">กรุณาเลือกประเภทเงินฝาก</option>
+                                                </select>
+                                                <br>
+                                                <br>
 
-                                        <input type="button" value="แสดงข้อมูล" onclick="ajaxAPI()" />
+                                                <label for="txtProductName">ชื่อผลิตภัณฑ์เงินฝาก :</label>
+                                                <input type="text" name="txtProductName" id="txtProductName" placeholder="ระบุชื่อผลิตภัณฑ์เงินฝาก" maxlength="" style="width:310px;text-align: center"
+                                                />
+                                                <br>
+                                                <br>
 
+                                                <label for="txtBalanceAmount">จำนวนเงินฝากไม่เกิน (บาท) :</label>
+                                                <input type="text" name="txtBalanceAmount" id="txtBalanceAmount" placeholder="ระบุจำนวนเงินฝาก" maxlength="15" style="width:310px;text-align: center"
+                                                />
+                                                <br>
+                                                <br>
+
+                                                <label for="menuAccntWithInsrnc">บัญชีเงินฝากแบบมีประกัน :</label>
+                                                <select name="menuAccntWithInsrnc" id="menuAccntWithInsrnc" style="text-align: center;width: 310px">
+                                                    <option value="" selected="selected">ทั้งหมด</option>
+                                                    <option value="1"> บัญชีเงินฝากแบบไม่มีประกัน </option>
+                                                    <option value="2"> บัญชีเงินฝากแบบมีประกัน </option>
+                                                </select>
+                                                <br>
+                                                <br>
+
+                                                <label for="menuProductRelate">ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี :</label>
+                                                <select name="menuProductRelate" id="menuProductRelate" style="text-align: center;width: 310px ">
+                                                    <option value="" selected="selected">ทั้งหมด</option>
+                                                    <option value="1"> ไม่ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                                                    <option value="2"> ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                                                </select>
+                                                <br>
+                                                <br>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- <hr class="style1"> -->
+                                                <td>
+                                                    <label for="menuDepositTerm">ข้อมูลเฉพาะการฝากประจำ</label>
+                                                    <br>
+                                                    <br>
+                                                    <label for="menuDepositTermRange">ระยะเวลาการฝาก :</label>
+                                                    <select name="menuDepositTermRange" id="menuDepositTermRange" style="text-align: center;width: 310px ">
+                                                        <option value="" selected="selected">ทุกระยะเวลาการฝาก</option>
+                                                        <option value="0-30">ไม่เกิน 1 เดือน</option>
+                                                        <option value="0-90">ไม่เกิน 3 เดือน</option>
+                                                        <option value="0-180">ไม่เกิน 6 เดือน</option>
+                                                        <option value="0-270">ไม่เกิน 9 เดือน</option>
+                                                        <option value="0-360">ไม่เกิน 12 เดือน</option>
+                                                        <option value="361-n">มากกว่า 12 เดือน</option>
+                                                    </select>
+                                                    <br>
+                                                    <br>
+
+                                                    <label for="menuDepositTermType">ระยะเวลาการฝาก :</label>
+                                                    <select name="menuDepositTermType" id="menuDepositTermType" style="text-align: center;width: 310px ">
+                                                        <option value="" selected="selected">ทั้งหมด</option>
+                                                        <option value="1">ไม่ต้องฝากทุกเดือน</option>
+                                                        <option value="2">ต้องฝากทุกเดือน</option>
+                                                    </select>
+                                                    <br>
+                                                    <br>
+
+                                                    <label for="menuInterestWithoutTax">ระยะเวลาการฝาก :</label>
+                                                    <select name="menuInterestWithoutTax" id="menuInterestWithoutTax" style="text-align: center;width: 310px ">
+                                                        <option value="" selected="selected">ทั้งหมด</option>
+                                                        <option value="1">ปลอดภาษี</option>
+                                                        <option value="2">ไม่ปลอดภาษี</option>
+                                                    </select>
+                                                    <br>
+                                                    <br>
+                                            </div>
                                     </form>
-                                </fieldset>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="submit" class="btn btn-info" value="Submit" onclick="ajaxAPI()">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
-                            </div>
-                        </div>
 
+                                </fieldset>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="submit" class="btn btn-success" ><i class="glyphicon glyphicon-ok"></i> Submit</button> -->
+                                    <input type="submit" class="btn btn-info" value="Submit" onclick="ajaxAPI()">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+            <!-- data and pagination -->
+            <div class="container-data">
+                <div class="data-container"></div>
+                <div id="pagination-demo1"></div>
+            </div>
+
+            <div class="footer">
+                <p>Footer</p>
+            </div>
         </div>
 
-        <!-- data and pagination -->
-        <div class="container-data">
-            <div class="data-container"></div>
-            <div id="pagination-demo1"></div>
-        </div>
-    </div>
+        <!-- Detail Modal -->
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="interestModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal-header-title-detail">
+
+                            </div><!-- <h4 class="modal-title"> </h4> -->
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-body-detail"></div>
+                            <!-- Modal Body -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 
 </html>

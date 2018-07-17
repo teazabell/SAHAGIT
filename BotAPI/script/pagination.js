@@ -38,28 +38,39 @@ function pagination(namePage , sources) {
 
           $.each(response, function (index, item) {
 
+            var data ="";
+            if(item.InterestRateCondition.trim() == ""){
+              
+               data= "<td>" + interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+ "</td>";
+            }
+            else{
+              data = "<td>" + "<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+","+pagination.pageNumber+") >"+
+               interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+"</button> </td>";
+             }
+
+             
             dataHtml += "<tr>" +
             "<td>" + item.FIName +"</td>" +
             "<td>" + item.AccountType +"</td>" +
             "<td>" + item.ProductName + "</td>" +
-            "<td>" + "<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+") >"+
-            interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+"</button> </td>"+
+            data+
+            //  "<td>" + "<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+","+pagination.pageNumber+") >"+
+            //  interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+"</button> </td>"+
             "<td>" + isEmpty(item.MinimumDepositTerm)+" เดือน" +"</br>"+ item.DepositTermFlag + "</td>" +
             "<td>" + numberWithCommas(parseInt(item.MinimumBalance)) +"</td>" +
             "<td>" +item.BundleProductFlag + "</td>" +
             "</tr>";
             
-            var detail = "<div class='content' id='"+index+"' style='display:block' >"+item.InterestRateCondition+"</div>";
-            $(".modal-body").append(detail);
+            var detail = "<div class='content' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >"+item.InterestRateCondition+"</div>";
+            $(".modal-body-detail").append(detail);
+            
+            var header = "<h4 class='modal-title' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >อัตราดอกเบี้ย ของผลิตภัณฑ์ "+item.ProductName+"</h4>";
+            $(".modal-header-title-detail").append(header);
 
-            var header = "<h4 class='modal-title' id='"+index+"' style='display:block' >อัตราดอกเบี้ย ของผลิตภัณฑ์ "+item.ProductName+"</h4>";
-            $(".modal-header").append(header);
-
-
+        
           });
 
            dataHtml += "</tbody></table>";
-           
           container.prev().html(dataHtml);
         }
       };
@@ -78,16 +89,14 @@ function pagination(namePage , sources) {
     })(namePage);
 }
 
-function showDetail (index , ProductName){
+function showDetail (index, pageNumber){
+  console.log("calling");
   $('.content').show();
-  $('.content').not('#' + index).hide();
+  $('.content').not('#'+index+'-'+pageNumber).hide();
 
   $('.modal-title').show();
-  $('.modal-title').not('#' + index).hide();
+  $('.modal-title').not('#'+index+'-'+pageNumber).hide();
 
-  
-  // var str = "อัตราดอกเบี้ย ของผลิตภัณฑ์ "+ProductName;
-  // $('.modal-title').html(str);
 }
 
 
