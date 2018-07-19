@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>BOT API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <!-- <script src="api-registry.json" ></script> -->
+</head>
+
+<body>
+    <div class="ajax-container">
+
+        <form name="fiForm" id="findFi" method="post">
+            ชื่อสถาบันการเงิน :
+            <input type="text" id="txtFIName" />
+            <input id="btnFindFI" type="button" value="ค้นหา" />
+        </form>
+
+        <div class="display-data"> </div>
+    </div>
+
+    <script>
+        $('#btnFindFI').click(function () {
+            $(document).ready(function () {
+                var criteria = {
+                    AccountTypeList: '',
+                    FICodeList: '002',
+                    BalanceAmount: '500',
+                    ProductName: 'สะสมทรัพย์',
+                    DepositTermRange: '',
+                    DepositTermType: '',
+                    InterestWithoutTax: '',
+                    AccntWithInsrnc: '',
+                    ProductRelate: ''
+                };
+                $.ajax({
+                    url: 'https://iapi.bot.or.th/Stat/ProductDisclosure/Deposit',
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(
+                            'api-key', 'U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm'
+                        );
+                    },
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    Accept: 'application/json',
+                    method: "POST",
+                    data: JSON.stringify(criteria),
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>

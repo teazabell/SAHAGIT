@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="demo_style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="demoScript/callAjax.js"></script>
+    <script src="demoScript/perpage.js"></script>
+    <script src="demoScript/option.js"></script>
+    <script src="demoScript/comma.js"></script>
+</head>
+
+<body onload="selectOption()">
+    <div class="ajax-container">
+        <form name="fiForm" id="findFi" method="post">
+            ชื่อสถาบันการเงิน : 
+            <select id="categoryEvent">
+                <option value="default" >------กรุณาเลือกธนาคาร------</option>
+            </select>
+            <input type="button" value="ค้นหา" onclick="ajaxAPI()" />
+        </form>
+        <div class="test"></div>
+        <div id="content">
+            <!-- <div class="element"></div> -->
+        </div>
+        <div class="pagination"></div>
+    </div>
+
+</body>
+
+</html>

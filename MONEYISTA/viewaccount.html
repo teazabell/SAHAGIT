@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--  This site was created in Webflow. http://www.webflow.com  -->
+<!--  Last Published: Thu Jul 19 2018 05:11:22 GMT+0000 (UTC)  -->
+<html data-wf-page="5b4a3e70bd742056def00c90" data-wf-site="5b46d46ca0fccff1cad80dce">
+
+<head>
+  <meta charset="utf-8">
+  <title>Viewaccount</title>
+  <meta content="Viewaccount" property="og:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script>
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/about-2752c8.webflow.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="node_modules/paginationjs/dist/pagination.css" type="text/css">
+  <script src="node_modules/paginationjs/src/pagination.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({ google: { families: ["Great Vibes:400", "Roboto Mono:regular", "Pridi:regular:thai,latin", "Prompt:regular:thai,latin"] } });</script>
+  <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
+  <script type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
+
+  <!-- My Library -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- My Style -->
+  <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <script src="bootstrap/bootstrap.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css"> -->
+
+  <!-- My scripts -->
+  <script src="js/viewAccount/ajaxCall.js"></script>
+  <!-- <script src="bootstrap/bootstrap.min.js"></script> -->
+
+  <!-- Pagination -->
+  <script src="js/viewAccount/pagination.js"></script>
+  <!-- <link rel="stylesheet" href="node_modules/paginationjs/dist/pagination.css" type="text/css">
+  <script src="node_modules/paginationjs/src/pagination.js"></script>
+  <script src="js/viewAccount/pagination.js"></script>
+  <script src="http://pagination.js.org/dist/2.1.3/pagination.js"></script>
+  <script src="http://pagination.js.org/dist/2.1.3/pagination.min.js"></script> -->
+
+
+</head>
+
+<body>
+  <div data-collapse="medium" data-animation="default" data-duration="400" class="navbar-2 w-nav">
+    <div class="containertab w-container">
+      <a href="index.html" class="brand w-nav-brand">
+        <h3 class="h3">MONEYISTA</h3>
+      </a>
+      <nav role="navigation" class="navmenu w-nav-menu">
+        <a href="articles.html" target="_blank" class="navlinkcon w-nav-link">ARTICLES</a>
+        <a href="services.html" class="navlinkcon w-nav-link">SERVICES</a>
+      </nav>
+      <div class="button w-nav-button">
+        <div class="icon w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-9">
+    <div class="container-8 w-container">
+      <div class="text-block-13">ดูทุกบัญชีในทุกธนาคารที่คุณต้องการ (View all Accounts)</div>
+      <div class="textblockview1">กรุณาเลือกธนาคารที่คุณต้องการดูบัญชี</div>
+      <select id="menuFI" name="fiName" style="width: 310px;text-align: center" onchange=ajaxAPI()>
+        <option value="" selected="selected">กรุณาเลือกสถาบันการเงิน</option>
+        <option value="002">กรุงเทพ </option>
+        <option value="006">กรุงไทย</option>
+        <option value="025">กรุงศรีอยุธยา</option>
+        <option value="004">กสิกรไทย</option>
+        <option value="069">เกียรตินาคิน</option>
+        <option value="017">ซิตี้แบงก์</option>
+        <option value="022">ซีไอเอ็มบี ไทย</option>
+        <option value="011">ทหารไทย</option>
+        <option value="067">ทิสโก้</option>
+        <option value="071">ไทยเครดิตเพื่อรายย่อย </option>
+        <option value="014">ไทยพาณิชย์</option>
+        <option value="034">ธ.ก.ส.</option>
+        <option value="065">ธนชาต</option>
+        <option value="052">ธนาคารแห่งประเทศจีน (ไทย)</option>
+        <option value="033">ธอส.</option>
+        <option value="613">บค. แคปปิตอล ลิ้งค์</option>
+        <option value="608">บค. ลินน์ ฟิลลิปส์ มอร์ทเก็จ</option>
+        <option value="610">บค. เวิลด</option>
+        <option value="453">บง. ศรีสวัสดิ</option>
+        <option value="452">บง. แอ็ดวานซ์</option>
+        <option value="026">เมกะ สากลพาณิชย์</option>
+        <option value="024">ยูโอบี</option>
+        <option value="073">แลนด์ แอนด์ เฮ้าส์</option>
+        <option value="030">ออมสิน</option>
+        <option value="066">อิสลาม</option>
+        <option value="070">ไอซีบีซี (ไทย)</option>
+      </select>
+
+      <!-- แสดงชื่อธนาคาร -->
+      <div class="divName" style="width: 100">
+        <img class="imgFI" >  
+        <!-- src="images/กรุงเทพ.png" -->
+        <div class="text-block-FIName"></div>
+      </div>
+
+      <!-- data and pagination -->
+      <div class="container-data">
+        <div class="data-container">
+        </div>
+        <div id="pagination-demo1"></div>
+      </div>
+      
+     
+    </div>
+  </div>
+
+  <div class="divfooter">
+    <div class="text-block-36">
+      <strong>About us</strong>
+      <br>This website collects about financial planning.
+      <br>There are several services that you can choose to, hope you will like this website.
+      <br>
+    </div>
+    <a href="#" class="linkface w-inline-block">
+      <img src="images/facebook.png" width="40" class="image-10">
+    </a>
+    <a href="#" class="ltwit w-inline-block">
+      <img src="images/twitter.png" width="40">
+    </a>
+    <img src="images/phone-receiver.png" width="30" class="image-11">
+    <div class="text-block-40">02-3549367</div>
+    <div class="textnum">Contact us on</div>
+  </div>
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+</body>
+
+</html>

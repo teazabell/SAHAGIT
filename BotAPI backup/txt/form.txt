@@ -1,0 +1,45 @@
+<fieldset class="depositInfo">
+                <!-- <legend>Deposit information:</legend> -->
+                <form name="optionForm" id="optionForm" method="post">
+                    <label for="menuFI">ชื่อสถาบันการเงิน :</label>
+                    <select id="menuFI" name="fiName" style="width: 310px;text-align: center">
+                        <option value="">กรุณาเลือกสถาบันการเงิน</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <label for="menuAccount">ประเภทเงินฝาก :</label>
+                    <select id="menuAccount" name="account" style="width: 310px;text-align: center">
+                        <option value="">กรุณาเลือกประเภทเงินฝาก</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <label for="txtBalanceAmount">จำนวนเงินฝากไม่เกิน (บาท) :</label>
+                    <input type="text" name="txtBalanceAmount" id="txtBalanceAmount" placeholder="ระบุจำนวนเงินฝาก" maxlength="15" style="width:310px;text-align: center"
+                    />
+                    <br>
+                    <br>
+
+                    <label for="menuAccntWithInsrnc">บัญชีเงินฝากแบบมีประกัน :</label>
+                    <select name="menuAccntWithInsrnc" id="menuAccntWithInsrnc" style="text-align: center;width: 310px">
+                        <option value="">ทั้งหมด</option>
+                        <option value="1"> บัญชีเงินฝากแบบไม่มีประกัน </option>
+                        <option value="2"> บัญชีเงินฝากแบบมีประกัน </option>
+                    </select>
+                    <br>
+                    <br>
+
+                    <label for="menuProductRelate">ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี :</label>
+                    <select name="menuProductRelate" id="menuProductRelate" style="text-align: center;width: 310px ">
+                        <option value="">ทั้งหมด</option>
+                        <option value="1"> ไม่ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                        <option value="2"> ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี </option>
+                    </select>
+                    <br>
+                    <br>
+
+                    <input type="button" value="แสดงข้อมูล" onclick="ajaxAPI()" />
+
+                </form>
+            </fieldset>
