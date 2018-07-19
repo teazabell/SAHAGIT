@@ -1,8 +1,8 @@
 
-function isEmpty(data) {
+function isEmpty(data , DepositTermUnit) {
     if (data.trim() == "") {
       return "-";
-    } else return data;
+    } else return (data+" "+DepositTermUnit);
   }
   
   function resIsEmpty(data) {
@@ -23,7 +23,7 @@ function pagination(namePage , sources) {
         callback: function (response, pagination) {
           window.console && console.log(response, pagination);
 
-          var dataHtml ="<table id='myTable' class='table table-bordered table-striped'  style='text-align: center'>"+
+          var dataHtml ="<table id='myTable' class='table table-bordered table-striped'  style='text-align: center; vertical-align: baseline'>"+
           "<thead >"+
             "<tr>"+
               // "<th>สถาบันการเงิน</th>"+
@@ -57,10 +57,16 @@ function pagination(namePage , sources) {
               data+
               //  "<td>" + "<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+","+pagination.pageNumber+") >"+
               //  interestRate(item.MinimumInterestRate,item.MaximumInterestRate)+"</button> </td>"+
-              "<td>" + isEmpty(item.MinimumDepositTerm)+" เดือน" +"</br>"+ item.DepositTermFlag + "</td>" +
+              "<td>" + isEmpty(item.MinimumDepositTerm , item.DepositTermUnit) +"</br>"+ item.DepositTermFlag + "</td>" +
               "<td>" + numberWithCommas(parseInt(item.MinimumBalance)) +"</td>" +
               "<td>" +item.BundleProductFlag + "</td>" +
               "</tr>";
+
+              var detail = "<div class='content' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >"+item.InterestRateCondition+"</div>";
+              $(".modal-body-detail").append(detail);
+            
+              var header = "<h4 class='modal-title' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >อัตราดอกเบี้ย ของผลิตภัณฑ์ "+item.ProductName+"</h4>";
+              $(".modal-header-title-detail").append(header);
               
   
             });
@@ -100,4 +106,14 @@ function numberWithCommas (x) {
   var parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");
+}
+
+function showDetail (index, pageNumber){
+  console.log("calling");
+  $('.content').show();
+  $('.content').not('#'+index+'-'+pageNumber).hide();
+
+  $('.modal-title').show();
+  $('.modal-title').not('#'+index+'-'+pageNumber).hide();
+
 }

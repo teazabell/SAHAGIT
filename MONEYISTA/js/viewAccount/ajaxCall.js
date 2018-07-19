@@ -70,15 +70,25 @@ function ajaxAPI() {
           "613": "images/iconbank/บค.แคปปิตอล ลิ้งค์.png"
         };
 
-        $(".text-block-FIName")
+        if(FICodeList == "052"){
+          $(".text-block-FIName")
+          .empty()
+          .append(deleteBr(response[0].FIName));
+        }
+        else{
+          $(".text-block-FIName")
           .empty()
           .append("ธนาคาร" + deleteBr(response[0].FIName));
+        }
+        
         $(".imgFI")
           .empty()
           .append('<img src="' + img[FICodeList] + '" width="100">');
 
         $(".divfooter").css("margin-top", "100px");
 
+        $(".modal-header-title-detail").empty(); 
+        $(".modal-body-detail").empty();
         pagination("demo1", response);
       },
       error: function(jqXHR, textStatus, errorThrown) {
