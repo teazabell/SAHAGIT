@@ -1038,7 +1038,7 @@ a {
 }
 
 .headcalac {
-  position: relative;
+  /* position: relative; */
   top: 15px;
   height: 0px;
   font-family: Prompt, sans-serif;
@@ -1047,38 +1047,45 @@ a {
 }
 
 .textcalac1 {
-  position: relative;
-  left: -2px;
-  top: 86px;
+  /* position: relative; */
+  margin-left: -2px;
+  margin-right: 30px;
   height: 50px;
   font-family: Prompt, sans-serif;
   font-size: 22px;
   font-weight: 500;
+  display: inline;
 }
 
 .divacspe {
-  position: relative;
+  /* position: relative; */
+  margin-left: 70px;
+  margin-top: 30px;
+  margin-bottom: -10px;
   left: 38px;
   top: -115px;
-  width: 800px;
-  height: 250px;
+  width: 700px;
+  height: 200px;
   border-style: solid;
   border-width: 0.5px;
   border-color: rgba(0, 0, 0, .6);
 }
 
 .textspe1 {
-  position: relative;
-  left: 5px;
-  top: 12px;
+  /* position: relative; */
+  margin-left: 20px;
+  margin-right: 50px;
+  /* left: 15px;
+  top: 12px; */
   font-family: Prompt, sans-serif;
   font-size: 18px;
+  display: inline;
 }
 
 .headspe {
   position: relative;
-  left: 1px;
-  top: -9px;
+  left: px;
+  top: -20px;
   border-style: solid;
   border-width: 0.5px;
   border-color: rgba(0, 0, 0, .15);
@@ -1090,12 +1097,15 @@ a {
 }
 
 .textspe2 {
-  position: relative;
-  left: 2px;
-  top: 21px;
+  /* position: relative; */
+  margin-left: 20px;
+  margin-right: 20px;
+  /* left: 2px;
+  top: 21px; */
   font-family: Prompt, sans-serif;
   font-size: 18px;
   font-weight: 500;
+  display: inline;
 }
 
 .container-11 {
@@ -1104,39 +1114,48 @@ a {
 }
 
 .textaccal3 {
-  position: relative;
+  /* position: relative; */
+  margin-right: 20px;
   left: 2px;
   top: 421px;
   font-family: Prompt, sans-serif;
   font-size: 20px;
   font-weight: 500;
+  display: inline;
 }
 
 .textcalac2 {
-  position: relative;
+  /* position: relative; */
+  margin-right: 20px;
   left: 2px;
   top: 374px;
   font-family: Prompt, sans-serif;
   font-size: 22px;
   font-weight: 500;
+  display: inline;
 }
 
 .textspe3 {
-  position: relative;
+  /* position: relative; */
+  margin-left: 20px;
+  margin-right: 40px;
   left: 2px;
   top: 31px;
   font-family: Prompt, sans-serif;
   font-size: 18px;
   font-weight: 500;
+  display: inline;
 }
 
 .textaccal4 {
-  position: relative;
+  /* position: relative; */
+  margin-right: 20px;
   left: 1px;
   top: 465px;
   font-family: Prompt, sans-serif;
   font-size: 20px;
   font-weight: 500;
+  display: inline;
 }
 
 .textaccal5 {
@@ -3541,8 +3560,8 @@ a {
 
 .link-15 {
   position: relative;
-  left: 562px;
-  top: 232px;
+  /* left: 562px;
+  top: 232px; */
   border-style: solid;
   border-width: 0.5px;
   border-color: rgba(101, 194, 252, .74);
@@ -3550,6 +3569,8 @@ a {
   font-family: Prompt, sans-serif;
   font-size: 16px;
   font-weight: 500;
+  float: right;
+  margin-right: 30px;
 }
 
 .section-13 {
@@ -3891,3 +3912,42 @@ a {
   }
 }
 
+.depositInfo label {
+  float: left;
+  width: 360px; 
+  /* กำหนดระยะห่างระวัง lable กับ select  */
+  margin-left: 80px;
+  margin-right: 20px;
+  font-family: Prompt, sans-serif;
+  font-size: 18px;
+  font-weight: 500; 
+  display: inline;
+} 
+
+.depositInfo select , #txtBalanceAmount{
+  font-family: Prompt, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#panel-body{
+  height: 450px;
+  width: 800px;
+}
+
+#labelTax , #labelTermRange , #labelTerm{
+  float: left;
+  width: 250px; 
+  /* กำหนดระยะห่างระวัง lable กับ select  */
+  margin-left: 60px;
+  margin-right: 20px;
+  font-family: Prompt, sans-serif;
+  font-size: 18px;
+  font-weight: 500; 
+  display: inline;
+}
+
+#txtHeadCollapse{
+  font-family: Prompt, sans-serif;
+  font-size: 20px;
+}
