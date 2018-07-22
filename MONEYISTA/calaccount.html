@@ -15,8 +15,6 @@
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/about-2752c8.webflow.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="node_modules/paginationjs/dist/pagination.css" type="text/css">
-  <script src="node_modules/paginationjs/src/pagination-callAccount.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({ google: { families: ["Great Vibes:400", "Roboto Mono:regular", "Pridi:regular:thai,latin", "Prompt:regular:thai,latin"] } });</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -29,6 +27,13 @@
   <script src="js/calAccount/typeAccount.js"></script>
   <script src="js/calAccount/ajaxCall.js"></script>
   <script src="js/calAccount/pagination.js"></script>
+  <link rel="stylesheet" href="node_modules/paginationjs/dist/pagination-calAccount.css" type="text/css">
+  <script src="node_modules/paginationjs/src/pagination-callAccount.js"></script>
+  <script src="js/showAllData/createData.js"></script>
+  <link rel="stylesheet" href="css/myBootstrap.css">
+  <script src="js/showAllData/showAll.js"></script>
+  <script src="js/Cookie/cookie.js"></script>
+  <script src="js/scrollFunction.js"></script>
 </head>
 
 <body>
@@ -58,9 +63,12 @@
           <div id="collapse1" class="panel-collapse collapse in">
             <div class="panel-body" id="panel-body">
               <h2 class="headcalac">กรอกข้อมูลก่อนเริ่มการคำนวณ</h2>
+              <br>
+              <br>
+              <br>
               <fieldset class="depositInfo">
                 <form name="formOption" id="formOption" method="post">
-                  <div class="row">
+                  <div class="row-calAccount">
                     <div class="col-md-form">
                       <label for="menuAccount">ประเภทเงินฝาก :</label>
                       <select id="menuAccount" name="account" onchange="typeAccount()" style="width: 310px;text-align: center">
@@ -108,7 +116,7 @@
                       <br>
                       <br>
                       <label for="menuFI">ชื่อสถาบันการเงิน :</label>
-                      <select id="menuFI1" name="fiName" style="width: 310px;text-align: center" onchange=ajaxAPI()>
+                      <select id="menuFI1" name="fiName" style="width: 310px;text-align: center">
                         <option value="" selected="selected">กรุณาเลือกสถาบันการเงิน</option>
                         <option value="002">กรุงเทพ </option>
                         <option value="006">กรุงไทย</option>
@@ -181,7 +189,7 @@
               <div class="data-container"></div>
               <div id="pagination-demo1"></div>
             </div>
-
+            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
           </div>
         </div>
 
@@ -204,6 +212,12 @@
         </div>
 
         <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+
+        <script>
+          // When the user scrolls down 20px from the top of the document, show the button
+          window.onscroll = function () { scrollFunction() };
+
+        </script>
 </body>
 
 </html>

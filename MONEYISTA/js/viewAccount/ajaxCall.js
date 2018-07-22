@@ -4,12 +4,6 @@ function isEmpty(data, unit) {
   } else return data + " " + unit + " ";
 }
 
-function resIsEmpty(data) {
-  if (!$.trim(data)) {
-    alert("ไม่พบข้อมูล");
-    return false;
-  } else return true;
-}
 
 function ajaxAPI() {
   var FICodeList = $("#menuFI").val();

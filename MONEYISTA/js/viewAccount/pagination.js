@@ -109,11 +109,9 @@ function numberWithCommas (x) {
 }
 
 function showDetail (index, pageNumber){
-  console.log("calling");
   $('.content').show();
   $('.content').not('#'+index+'-'+pageNumber).hide();
 
   $('.modal-title').show();
   $('.modal-title').not('#'+index+'-'+pageNumber).hide();
-
 }

@@ -1,4 +1,4 @@
-function addDataAll(item , index , pageNumber){
+function addDataAll(item, index, pageNumber) {
 
     console.log("calling");
     // var data = "<table class='contentAll' id='"+index+"-"+pageNumber+"'>"+
@@ -110,14 +110,201 @@ function addDataAll(item , index , pageNumber){
     //             "</tbody>" +
     //             "</table>";
 
-    var data ="World";
+    // var detail =
+    // "<div class='content' style='display:block' >"+
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">สถาบันการเงิน</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><img src="'+img+'" width="60" class="image-4">' +
+    // '<div class="text-block-17">'+item.FIName+'</div>' +
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ผลิตภัณฑ์</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.ProductName+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">อัตราดอกเบี้ยต่อปี (%ต่อปี)</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem"></div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">อัตราดอกเบี้ยตามเงื่อนไข (%ต่อปี)</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+lineUp(item.InterestRateCondition)+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">วิธีคิดอัตราดอกเบี้ย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InterestMethod+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ดอกเบี้ยปลอดภาษี</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+InterestWithoutTaxFlag(item.InterestWithoutTaxFlag)+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ระยะเวลาจ่ายดอกเบี้ย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InterestPaymentTerm+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ช่องทางการรับดอกเบี้ย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InterestPaymentOptions+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ดอกเบี้ย กรณีผิดเงื่อนไขการฝาก</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InterestRateWithdrawBeforeMaturity+"<br>"+"<br>"+item.InterestRateWhenBalanceIsBelowMimimumLevel+"<br>"+item.InterestRateWhenDepositInstallmentIsOmitted+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ระยะเวลาฝากที่กำหนด</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.MinimumDepositTerm+"<br>"+item.DepositTermFlag+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">จำนวนเงินเปิดบัญชีขั้นต่ำ</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.MinimumBalance+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">จำนวนเงินฝากสูงสุด</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.MaximumBalance+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่การเปิดบัญชี</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+BundleProduct(item.BundleProduct)+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">อายุผู้ฝาก (บุคคลธรรมดา)</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.DepositorAge+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">เงื่อนไขการเปิดบัญชี</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+lineUp(item.OpenningAccountCondition)+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">การฝากเพิ่มในบัญชีเดิม</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+AdditionalDepositFlag(item.AdditionalDepositFlag)+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">จำนวนเงินฝากขั้นต่ำต่อครั้ง</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.MinimumAmountPerEachDeposit+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">การถอนบางส่วนของแต่ละรายการก่อนครบกำหนด</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.PartialWithdrowFlag+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">เงื่อนไขการฝาก/ถอน/โอนและเงินคงเหลือ</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.ConditionOfDepositWithdrawTransferAndBalance+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">การต่ออายุบัญชี เมื่อครบกำหนดระยะการฝาก</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.AccountRenewal+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ค่ารักษาบัญชี</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.AccountMaintenance+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ประกันภัย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InsuranceType+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">ชื่อบริษัทประกันภัย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InsuranceCompanyName+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">วงเงินการคุ้มครอง</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InsuranceProtectionLimit+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">เงื่อนไขความคุ้มครองประกันภัย</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem">'+item.InsuranceCondition+'</div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // '<div class="rowshow w-row">' +
+    // '<div class="column-7 w-col w-col-6">' +
+    // '<div class="textshowCol">website ผู้ให้บริการ (Link)</div>' +
+    // "</div>" +
+    // '<div class="column-8 w-col w-col-6"><div class="txtItem"><a href="'+item.WebsiteUrl+'">ไปยัง Website ผลิตภัณฑ์</a></div></div>'+
+    // "</div>" +
+    // "</div>" +
+    // "</div>";
 
-                //document.getElementById("demo").insertAdjacentHTML('beforeend', data);
+    var data = "World";
 
-                //document.getElementById("demo").innerHTML(data);
-                $("#demo").append(data);
+    //document.getElementById("demo").insertAdjacentHTML('beforeend', data);
 
-    
+    //document.getElementById("demo").innerHTML(data);
+    $("#demo").append(data);
+
+
     //location.href = "showAllData.html";
-    
+
 }

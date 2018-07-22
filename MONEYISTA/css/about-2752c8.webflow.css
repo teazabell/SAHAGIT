@@ -412,10 +412,10 @@ a {
 }
 
 .row {
-  position: relative;
+  /* position: relative;
   top: 300px;
   bottom: -277px;
-  margin: -238px 13px 0px 27px;
+  margin: -238px 13px 0px 27px; */
   padding-top: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
@@ -927,7 +927,7 @@ a {
   position: relative;
   left: 7px;
   top: 72px;
-  height: 90px;
+  height: 100px;
   background-color: hsla(210, 3%, 58%, .2);
 }
 
@@ -944,9 +944,22 @@ a {
   text-align: center;
 }
 
+.textshowCol {
+  position: relative;
+  margin-left: 0px;
+  margin-top: 37px;
+  /* width: 300px; */
+  height: 40px;
+  font-family: Prompt, sans-serif;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .text-block-17 {
   position: relative;
-  left: 110px;
+  left: 240px;
   top: 7px;
   bottom: -15px;
   display: -webkit-box;
@@ -967,10 +980,9 @@ a {
 
 .image-4 {
   position: relative;
-  left: 105px;
-  top: 7px;
-  right: 0px;
-  display: inline-block;
+  margin-left: 335px;
+   display: inline;
+   align: center;
 }
 
 .slidear1 {
@@ -1460,12 +1472,8 @@ a {
 }
 
 .column-7 {
-  height: 89px;
-  border-bottom: 2px solid rgba(0, 0, 0, .19);
-}
-
-.column-8 {
-  height: 89px;
+  height: 100px;
+  width: 380px;
   border-bottom: 2px solid rgba(0, 0, 0, .19);
 }
 
@@ -2701,7 +2709,7 @@ a {
 
 .section-12 {
   position: relative;
-  top: 78px;
+  top: 60px;
 }
 
 .heading-7 {
@@ -3580,7 +3588,7 @@ a {
 }
 
 .container-17 {
-  height: 500px;
+  height: 41px;
   border-style: solid;
   border-width: 0.5px;
   border-color: rgba(0, 0, 0, .38);
@@ -3663,6 +3671,7 @@ a {
   left: 0px;
   top: -30px;
   width: 940px;
+  height: 180px;
   border-style: solid;
   border-width: 1px;
   border-color: hsla(0, 7%, 60%, .72);
@@ -3681,26 +3690,10 @@ a {
 }
 
 .image-16 {
-  position: relative;
+  position: relative; 
   left: 0px;
   top: 1px;
-}
-
-.textinout {
-  position: relative;
-  left: 215px;
-  top: -60px;
-  width: 300px;
-  height: 50px;
-  font-family: Prompt, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.link-block-3 {
-  position: relative;
-  left: 76px;
-  top: 15px;
+  display: inline;
 }
 
 .image-17 {
@@ -3950,4 +3943,132 @@ a {
 #txtHeadCollapse{
   font-family: Prompt, sans-serif;
   font-size: 20px;
+}
+
+.btn-link  {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: hsla(0, 7%, 60%, .72);
+  background-color: rgba(204, 211, 216, .75);
+}
+
+.textinout {
+  position: relative;
+  left: 215px;
+  top: -90px;
+  width: 500px;
+  font-family: Prompt, sans-serif;
+  font-size: 18px;
+  /* font-weight: 600; */
+}
+
+
+.link-block-3 {
+  position: relative;
+  margin-top: 40px;
+  margin-left: 50px;
+}
+
+.column-8 {
+  position: relative;
+  height: 100px;
+  width: 580px;
+  border-bottom: 2px solid rgba(0, 0, 0, .19);
+  border-left: 2px solid rgba(0, 0, 0, .19);
+  
+}
+
+.txtItem {
+  /* position: relative; */
+  width: 555px;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-family: Prompt, sans-serif;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.textHead{
+  width: 430px;
+  text-align: center;
+  font-family: Prompt, sans-serif;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+.container-content{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.tdFIName {
+  position: relative;
+  font-family: Prompt, sans-serif;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.textBody{
+  position: relative;
+  margin-left: 10px;
+  font-family: Prompt, sans-serif;
+  color: #000;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.btn-link{
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+.row-calAccount {
+  /* position: relative;
+  top: 300px;
+  bottom: -277px;
+  margin: -238px 13px 0px 27px; */
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+}
+
+.divNoSearch {
+  position: relative;
+  left: 0px;
+  top: -30px;
+  width: 940px;
+  height: 500px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: hsla(0, 7%, 60%, .72);
+  background-color: rgba(204, 211, 216, .75);
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #008CBA;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
