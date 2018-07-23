@@ -657,8 +657,8 @@ a {
 }
 
 .text-block-12 {
-  position: relative;
-  top: 46px;
+  /* position: relative; */
+  margin-top: 60px;
   width: 500px;
   height: 50px;
   font-family: Prompt, sans-serif;
@@ -672,10 +672,12 @@ a {
 }
 
 .textblock13 {
-  position: relative;
+  /* position: relative; */
   top: 54px;
   font-family: Prompt, sans-serif;
   font-size: 22px;
+  display: inline;
+  margin-right: 20px;
 }
 
 .container-8 {
@@ -1935,11 +1937,13 @@ a {
 }
 
 .text-block-29 {
-  position: relative;
+  /* position: relative; */
   top: 56px;
   width: 100px;
   font-family: Prompt, sans-serif;
   font-size: 22px;
+  display: inline;
+  margin-right: 95px;
 }
 
 .dropcur {
@@ -1988,13 +1992,14 @@ a {
 }
 
 .text-block-31 {
-  position: relative;
-  top: 47px;
+  /* position: relative; */
   width: 200px;
   height: 35px;
   font-family: Prompt, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
+  display: inline;
+  margin-right: 125px;
 }
 
 .text-block-32 {
@@ -2096,7 +2101,7 @@ a {
 .link-3 {
   position: relative;
   left: 358px;
-  top: -95px;
+  /* top: -95px; */
   background-color: #b8adad;
   font-family: 'Roboto Mono', sans-serif;
   font-weight: 700;
@@ -4072,3 +4077,44 @@ a {
 #myBtn:hover {
   background-color: #555;
 }
+
+#exchangeRate{
+  display: inline;
+}
+
+.divoutput-exchange {
+  position: relative;
+  left: 200px;
+  top: -240px;
+  width: 500px;
+  /* border-style: solid;
+  border-width: 1.5px; */
+  border-color: rgba(0, 0, 0, .28);
+  font-family: Prompt, sans-serif;
+  font-size: 18px;
+  line-height: 35px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.button2 {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  margin-left: 360px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  box-shadow: 0 10px 13px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+  
