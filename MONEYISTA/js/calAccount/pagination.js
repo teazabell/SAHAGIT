@@ -28,7 +28,7 @@ var img = {
   "034": "images/iconbank/ธ.ก.ส.png",
   "052": "images/iconbank/ธนาคารแห่งประเทศจีน(ไทย).png",
   "065": "images/iconbank/ธนชาต.png",
-  "066": "images/iconbank/อิสลาม",
+  "066": "images/iconbank/อิสลาม.png",
   "067": "images/iconbank/ทิสโก้.png",
   "069": "images/iconbank/เกียรตินาคิน.png",
   "070": "images/iconbank/ไอซีบีซี.png",
@@ -57,7 +57,7 @@ function pagination(namePage , sources) {
           $.each(response, function (index, item) {
             dataHtml += '<div class="divshowout">'+
             //"<button type='button' class='btn btn-link' data-toggle='modal' data-target='#interestModal' onclick=showDetail("+index+","+pagination.pageNumber+") >"+
-            '<a href="showalldata.html" class="link-block-3 w-inline-block" onclick=sendData('+index+','+pagination.pageNumber+') >'+
+            '<a href="showalldata.html" class="link-block-3 w-inline-block" target="_blank" onclick=sendData('+index+','+pagination.pageNumber+') >'+
             '<img src="'+img[item.FICode]+'" width="100" class="image-16"></a>'+
             '<div class="textinout"><b>ประเภทบัญชีเงินฝาก : </b>'+item.AccountType+
             '<br><b>ชื่อผลิตภัณฑ์ : </b>'+item.ProductName+

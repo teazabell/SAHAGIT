@@ -7,7 +7,6 @@ function isEmpty(data, unit) {
 function resIsEmpty(data) {
   if (!$.trim(data)) {
     // alert("ไม่พบข้อมูล");
-    console.log("calling");
     return false;
   } else return true;
 }
@@ -21,27 +20,33 @@ function ajaxAPI() {
   var DepositTermRange = $("#menuDepositTermRange").val();
   var DepositTermType = $("#menuDepositTermType").val();
   var InterestWithoutTax = $("#menuInterestWithoutTax").val();
+  var ProductName = $("#txtProductName").val();
 
+  BalanceAmount = BalanceAmount.replace(',', '');
+  
   var criteria = {
     AccountTypeList: AccountTypeList,
     FICodeList: FICodeList,
     BalanceAmount: BalanceAmount,
-    ProductName: "",
+    ProductName: ProductName,
     DepositTermRange: DepositTermRange,
     DepositTermType: DepositTermType,
     InterestWithoutTax: InterestWithoutTax,
     AccntWithInsrnc: AccntWithInsrnc,
     ProductRelate: ProductRelate
   };
-  11;
+
 
   $.ajax({
     method: "POST",
-    url: "https://iapi.bot.or.th/Stat/ProductDisclosure/Deposit",
+    // url: "https://iapi.bot.or.th/Stat/ProductDisclosure/Deposit",
+    url: " https://apigw1.bot.or.th/bot/public/deposit-product/",
     beforeSend: function(xhr) {
       xhr.setRequestHeader(
-        "api-key",
-        "U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm"
+        // "api-key",
+        // "U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm"
+        "X-IBM-Client-Id",
+        "b096ba29-5d7f-4842-b622-210d4787e3bd"
       );
     },
     dataType: "json",
@@ -54,7 +59,7 @@ function ajaxAPI() {
       if (resIsEmpty(response)) {
         $(".modal-header-title-detail").empty();
         $(".modal-body-detail").empty();
-        pagination("demo1", response);
+        pagination("demo1", response.result.data);
       }
       else{
          var str = "<div class='divNoSearch'><img src='images/nosearch.png' width='350' style='margin-top: 40px;margin-left:300px' class='image-nosearch'></div>";

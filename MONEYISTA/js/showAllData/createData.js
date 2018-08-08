@@ -1,5 +1,9 @@
 function createData(item , img ){
     var data = "<table id='exportTable' class='table table-bordered table-striped'>"+
+                "<thead>"+
+                "<tr>"+
+                "</tr>"+
+                "</thead>"+
                 "<tbody>" +
                 "<tr>" +
                 "<td class='textHead'>สถาบันการเงิน</td>" +
@@ -43,7 +47,7 @@ function createData(item , img ){
                 "</tr>" +
                 "<tr id='n9' class='tr'>" +
                 "<td class='textHead'>จำนวนเงินเปิดบัญชีขั้นต่ำ</td>" +
-                "<td><div class='textBody'>"+parseInt(item.MinimumBalance)+" บาท</div></td>" +
+                "<td><div class='textBody'>"+addCommas(parseInt(item.MinimumBalance))+" บาท</div></td>" +
                 "</tr>" +
                 "<tr id='n10'  class='tr' style='display: none'>" +
                 "<td class='textHead'>จำนวนเงินฝากสูงสุด</td>" +

@@ -62,7 +62,8 @@ function pagination(namePage , sources) {
               "<td>" +item.BundleProductFlag + "</td>" +
               "</tr>";
 
-              var detail = "<div class='content' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >"+item.InterestRateCondition+"</div>";
+
+              var detail = "<div class='content' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >"+lineUp(item.InterestRateCondition)+"</div>";
               $(".modal-body-detail").append(detail);
             
               var header = "<h4 class='modal-title' id='"+index+"-"+pagination.pageNumber+"' style='display:block' >อัตราดอกเบี้ย ของผลิตภัณฑ์ "+item.ProductName+"</h4>";
@@ -114,4 +115,9 @@ function showDetail (index, pageNumber){
 
   $('.modal-title').show();
   $('.modal-title').not('#'+index+'-'+pageNumber).hide();
+}
+
+function lineUp(word) {
+  var newWord = word.replace(/\n/g, "<br/>");
+  return newWord;
 }
