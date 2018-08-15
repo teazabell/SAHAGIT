@@ -47,11 +47,11 @@ function createData(item , img ){
                 "</tr>" +
                 "<tr id='n9' class='tr'>" +
                 "<td class='textHead'>จำนวนเงินเปิดบัญชีขั้นต่ำ</td>" +
-                "<td><div class='textBody'>"+addCommas(parseInt(item.MinimumBalance))+" บาท</div></td>" +
+                "<td><div class='textBody'>"+minimumBalance(item.MinimumBalance , item.DepositTermFlag)+"</div></td>" +
                 "</tr>" +
                 "<tr id='n10'  class='tr' style='display: none'>" +
                 "<td class='textHead'>จำนวนเงินฝากสูงสุด</td>" +
-                "<td><div class='textBody'>"+parseInt(item.MaximumBalance)+" บาท</div></td>" +
+                "<td><div class='textBody'>"+number(item.MaximumBalance)+"</div></td>" +
                 "</tr>" +
                 "<tr id='n11' class='tr' >" +
                 "<td class='textHead'>ต้องซื้อ/ใช้ผลิตภัณฑ์อื่นควบคู่กับการเปิดบัญชี</td>" +
@@ -71,7 +71,7 @@ function createData(item , img ){
                 "</tr>" +
                 "<tr id='n15' class='tr' style='display: none'>" +
                 "<td class='textHead'>จำนวนเงินฝากขั้นต่ำต่อครั้ง</td>" +
-                "<td><div class='textBody'>"+item.MinimumAmountPerEachDeposit+"</div></td>" +
+                "<td><div class='textBody'>"+number(item.MinimumAmountPerEachDeposit)+"</div></td>" +
                 "</tr>" +
                 "<tr id='n16' class='tr' style='display: none'>" +
                 "<td class='textHead'>การถอนบางส่วนของแต่ละรายการก่อนครบกำหนด</td>" +
@@ -175,3 +175,13 @@ function interestRate(min , max){
     }
     else return word;
   }
+
+  function number(item){
+    if(item == 0.0000 || item == "") return "ไม่กำหนด";
+    else if(item != "" ) return addCommas(parseInt(item))+" บาท";
+}
+
+function minimumBalance(item , type){
+    if (type == "") return addCommas(parseInt(item))+" บาท";
+    else if(type == "ต้องฝากทุกเดือน") return addCommas(parseInt(item))+" บาท/เดือน";
+}
